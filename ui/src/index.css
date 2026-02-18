@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* ── Vi (Vodafone Idea) Brand Theme ── */
+
+:root {
+  /* Vi Brand Colors */
+  --vi-red: #E60000;
+  --vi-red-hover: #CC0000;
+  --vi-red-light: #FFF0F0;
+  --vi-purple: #9C2AA0;
+  --vi-purple-hover: #832390;
+  --vi-purple-light: #F9F0FA;
+  --vi-dark-purple: #5E2750;
+  --vi-yellow: #FECB00;
+  --vi-yellow-hover: #E5B800;
+
+  /* Light Theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #F9F5FA;
+  --bg-card: #ffffff;
+  --bg-header: linear-gradient(135deg, #E60000 0%, #9C2AA0 50%, #5E2750 100%);
+  --text-primary: #1a1a2e;
+  --text-secondary: #6b6b80;
+  --text-on-brand: #ffffff;
+  --border: #e8dcea;
+  --accent: #E60000;
+  --accent-hover: #CC0000;
+  --accent-secondary: #9C2AA0;
+  --accent-secondary-hover: #832390;
+  --danger: #E60000;
+  --warning: #FECB00;
+  --warning-text: #8B6914;
+  --success: #00a86b;
+  --success-light: #e6f9f1;
+  --tag-bg: #F3E8F4;
+  --tag-text: #5E2750;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --vi-red-light: #3D0A0A;
+    --vi-purple-light: #2D1430;
+
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #252540;
+    --bg-card: #252540;
+    --bg-header: linear-gradient(135deg, #CC0000 0%, #832390 50%, #4A1F40 100%);
+    --text-primary: #f0eaf2;
+    --text-secondary: #a8a0b0;
+    --text-on-brand: #ffffff;
+    --border: #3d3555;
+    --accent: #FF3333;
+    --accent-hover: #FF1A1A;
+    --accent-secondary: #B84ABF;
+    --accent-secondary-hover: #A33BAA;
+    --danger: #FF4444;
+    --warning: #FECB00;
+    --warning-text: #FECB00;
+    --success: #00d68f;
+    --success-light: #0a3322;
+    --tag-bg: #3D2040;
+    --tag-text: #D4A0D8;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* Vi gradient utility */
+.vi-gradient {
+  background: var(--bg-header);
+}
+
+.vi-gradient-text {
+  background: linear-gradient(135deg, #E60000, #9C2AA0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

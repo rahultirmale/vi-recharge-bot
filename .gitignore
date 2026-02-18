@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+server/dist/
+ui/dist/
+ui/dist-ssr/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment
+*.local
+.env
+
+# Editor
+.vscode/
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+Thumbs.db
