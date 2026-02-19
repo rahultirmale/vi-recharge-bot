@@ -1,5 +1,8 @@
 import type { ReceiptCardProps } from "../types";
 import { callTool } from "../bridge";
+import { Button } from "@openai/apps-sdk-ui/components/Button";
+import { Badge } from "@openai/apps-sdk-ui/components/Badge";
+import { CheckCircleFilled, Mail, Regenerate } from "@openai/apps-sdk-ui/components/Icon";
 
 export function ReceiptCard(props: ReceiptCardProps) {
   async function handleEmailReceipt() {
@@ -11,65 +14,50 @@ export function ReceiptCard(props: ReceiptCardProps) {
   }
 
   return (
-    <div className="rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--bg-card)] max-w-md mx-auto shadow-sm">
-      {/* Success header with Vi gradient */}
-      <div className="vi-gradient px-4 py-5 text-center">
-        <div className="w-14 h-14 mx-auto mb-2 rounded-full bg-white/20 backdrop-blur flex items-center justify-center">
-          <svg
-            className="w-8 h-8"
-            fill="none"
-            stroke="white"
-            strokeWidth={2.5}
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+    <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface)] max-w-md mx-auto">
+      {/* Success header */}
+      <div className="px-4 pt-5 pb-3 text-center">
+        <div className="size-12 mx-auto mb-2 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--color-background-success-soft)" }}>
+          <CheckCircleFilled className="size-6 text-[var(--color-text-success)]" />
         </div>
-        <h3 className="text-lg font-bold text-white">Recharge Successful!</h3>
-        <p className="text-3xl font-extrabold text-white mt-1">
-          ₹{props.amount}
-        </p>
+        <h3 className="text-sm font-semibold text-[var(--color-text)]">Recharge Successful</h3>
+        <p className="text-2xl font-bold mt-1" style={{ color: "var(--vi-red)" }}>₹{props.amount}</p>
       </div>
 
-      <div className="p-4">
+      <div className="px-4 pb-4">
         {/* Details */}
-        <div className="rounded-lg bg-[var(--bg-secondary)] p-3 space-y-2.5 mb-4">
+        <div className="rounded-lg bg-[var(--color-surface-secondary)] p-3 space-y-2 mb-4">
           <DetailRow label="Order ID" value={props.order_id} mono />
           <DetailRow label="Operator Txn" value={props.operator_txn_id} mono />
-          <div className="border-t border-[var(--border)]" />
+          <div className="border-t border-[var(--color-border-subtle)]" />
           <DetailRow label="Number" value={`${props.msisdn_masked} · ${props.operator}`} />
           <DetailRow label="Plan" value={props.plan_name} />
           <DetailRow label="Time" value={new Date(props.timestamp).toLocaleString()} />
         </div>
 
-        {/* Actions */}
-        <div className="flex gap-3">
-          <button
+        {/* Actions — max 2 per ChatGPT inline card guideline */}
+        <div className="flex gap-2">
+          <Button
+            color="secondary"
+            variant="outline"
+            size="md"
+            block
             onClick={handleEmailReceipt}
-            className="flex-1 px-3 py-2.5 rounded-lg border-2 border-[var(--accent-secondary)] text-[var(--accent-secondary)] text-sm font-semibold hover:bg-[var(--vi-purple-light)] transition-colors"
           >
-            <span className="flex items-center justify-center gap-1.5">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Email Receipt
-            </span>
-          </button>
-          <button
+            <Mail className="size-4" />
+            Email Receipt
+          </Button>
+          <Button
+            color="primary"
+            variant="solid"
+            size="md"
+            block
             onClick={handleRechargeAgain}
-            className="flex-1 px-3 py-2.5 rounded-lg bg-[var(--accent)] text-white text-sm font-bold hover:bg-[var(--accent-hover)] transition-colors shadow-sm"
+            style={{ backgroundColor: "var(--vi-red)", borderColor: "var(--vi-red)" }}
           >
-            <span className="flex items-center justify-center gap-1.5">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              Recharge Again
-            </span>
-          </button>
+            <Regenerate className="size-4" />
+            Recharge Again
+          </Button>
         </div>
       </div>
     </div>
@@ -79,8 +67,8 @@ export function ReceiptCard(props: ReceiptCardProps) {
 function DetailRow({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
     <div className="flex justify-between items-center">
-      <span className="text-xs text-[var(--text-secondary)]">{label}</span>
-      <span className={`text-xs font-medium ${mono ? "font-mono" : ""}`}>{value}</span>
+      <span className="text-xs text-[var(--color-text-secondary)]">{label}</span>
+      <span className={`text-xs font-medium text-[var(--color-text)] ${mono ? "font-mono" : ""}`}>{value}</span>
     </div>
   );
 }

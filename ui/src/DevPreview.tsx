@@ -1,7 +1,6 @@
 /**
  * Dev-only preview that renders all 4 cards with mock data.
- * Usage: set VITE_DEV_PREVIEW=true in .env.local, or run:
- *   VITE_DEV_PREVIEW=true npm run dev
+ * Usage: set VITE_DEV_PREVIEW=true in .env.local
  */
 import { PlanPickerCard } from "./components/PlanPickerCard";
 import { ConfirmRechargeCard } from "./components/ConfirmRechargeCard";
@@ -31,23 +30,19 @@ const mockPlans: Plan[] = [
 
 export function DevPreview() {
   return (
-    <div className="max-w-lg mx-auto p-4 space-y-8">
-      <div className="text-center mb-6">
-        <svg width="64" height="32" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto mb-2">
-          <text x="0" y="32" fontFamily="Arial, sans-serif" fontWeight="900" fontSize="36" fill="#E60000">V</text>
-          <text x="26" y="32" fontFamily="Arial, sans-serif" fontWeight="900" fontSize="36" fill="#E60000">i</text>
-          <circle cx="35" cy="8" r="4" fill="#FECB00" />
+    <div className="max-w-lg mx-auto p-4 space-y-8" data-theme="light">
+      <div className="text-center mb-4">
+        <svg width="56" height="28" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto mb-2">
+          <text x="0" y="32" fontFamily="Arial, sans-serif" fontWeight="900" fontSize="36" fill="var(--vi-red)">V</text>
+          <text x="26" y="32" fontFamily="Arial, sans-serif" fontWeight="900" fontSize="36" fill="var(--vi-red)">i</text>
+          <circle cx="35" cy="8" r="4" fill="var(--vi-yellow)" />
         </svg>
-        <h1 className="text-lg font-bold vi-gradient-text">
-          Vi Recharge — Card Preview
-        </h1>
-        <p className="text-xs text-[var(--text-secondary)] mt-1">Development preview of all UI components</p>
+        <h1 className="text-base font-semibold text-[var(--color-text)]">Vi Recharge — Card Preview</h1>
+        <p className="text-xs text-[var(--color-text-tertiary)] mt-1">Development preview of all UI components</p>
       </div>
 
       <section>
-        <h2 className="text-sm font-semibold text-[var(--accent-secondary)] mb-2">
-          1. PlanPickerCard
-        </h2>
+        <h2 className="text-xs font-medium text-[var(--color-text-secondary)] mb-2">1. PlanPickerCard</h2>
         <PlanPickerCard
           msisdn_masked="98******42"
           operator="Vi"
@@ -60,9 +55,7 @@ export function DevPreview() {
       </section>
 
       <section>
-        <h2 className="text-sm font-semibold text-[var(--accent-secondary)] mb-2">
-          2. ConfirmRechargeCard
-        </h2>
+        <h2 className="text-xs font-medium text-[var(--color-text-secondary)] mb-2">2. ConfirmRechargeCard</h2>
         <ConfirmRechargeCard
           msisdn_masked="98******42"
           operator="Vi"
@@ -74,9 +67,7 @@ export function DevPreview() {
       </section>
 
       <section>
-        <h2 className="text-sm font-semibold text-[var(--accent-secondary)] mb-2">
-          3. RechargeStatusCard (processing)
-        </h2>
+        <h2 className="text-xs font-medium text-[var(--color-text-secondary)] mb-2">3. RechargeStatusCard (processing)</h2>
         <RechargeStatusCard
           order_id="ORD12345"
           payment_status="success"
@@ -86,9 +77,7 @@ export function DevPreview() {
       </section>
 
       <section>
-        <h2 className="text-sm font-semibold text-[var(--accent-secondary)] mb-2">
-          4. ReceiptCard
-        </h2>
+        <h2 className="text-xs font-medium text-[var(--color-text-secondary)] mb-2">4. ReceiptCard</h2>
         <ReceiptCard
           order_id="ORD12345"
           amount={299}
